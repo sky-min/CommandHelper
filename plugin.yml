@@ -1,0 +1,7 @@
+---
+name: CommandHelper
+version: 1.0.0
+main: skymin\CommandHelper\CommandHelper
+api: 5.0.0
+src-namespace-prefix: skymin\CommandHelper
+...
