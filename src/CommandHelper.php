@@ -18,8 +18,8 @@ use function count;
 final class CommandHelper extends PluginBase{
 
 	/**
-	 * @var CommandParameter[][]
-	 * @phpstan-var array<string, CommandParameter[]>
+	 * @var CommandParameter[][]|CommandParameters[]
+	 * @phpstan-var array<string, CommandParameter[]|CommandParameters>
 	 */
 	private array $overloads = [];
 
@@ -44,6 +44,10 @@ final class CommandHelper extends PluginBase{
 			foreach($packet->commandData as $name => $commandData){
 				if(!isset($this->overloads[$name])) continue;
 				$newOverloads = [];
+				if($this->overloads[$name] instanceof CommandParameters){
+					$newOverloads[] = $this->overloads[$name]->encode();
+					continue;
+				}
 				foreach($this->overloads[$name] as $index => $overload){
 					$permission = $this->permissions[$name][$index];
 					if($permission !== null && !$player->hasPermission($permission)) continue;
@@ -60,6 +64,10 @@ final class CommandHelper extends PluginBase{
 					if($attribute->getName() !== CommandParameters::class) continue;
 					/** @var CommandParameters $parameters */
 					$parameters = $attribute->newInstance();
+					if($parameters->hasSoftEnum()){
+						$this->overloads[$name][] = $parameters;
+						continue;
+					}
 					$this->overloads[$name][] = $parameters->encode();
 					$this->permissions[$name][] = $parameters->getPermission();
 				}

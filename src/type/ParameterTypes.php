@@ -9,7 +9,6 @@ use pocketmine\network\mcpe\protocol\AvailableCommandsPacket;
 enum ParameterTypes{
 
 	case BLOCK_POSITION;
-	case BOOLEAN;
 	case FLOAT;
 	case INT;
 	case STRING;
@@ -19,7 +18,6 @@ enum ParameterTypes{
 	public static function encode(self $value) : int{
 		return match($value) {
 			self::BLOCK_POSITION => AvailableCommandsPacket::ARG_TYPE_INT_POSITION,
-			self::BOOLEAN => -1,
 			self::FLOAT => AvailableCommandsPacket::ARG_TYPE_FLOAT,
 			self::INT => AvailableCommandsPacket::ARG_TYPE_INT,
 			self::STRING => AvailableCommandsPacket::ARG_TYPE_STRING,
