@@ -21,7 +21,10 @@ final class EnumManager{
 		self::$enums[$enumName] = $enum;
 	}
 
-	public static function getEnum(string $enumName) : ?CustomEnum{
-		return self::$enums[$enumName] ?? null;
+	public static function getEnum(string $enumName) : CustomEnum{
+		if(isset(self::$enums[$enumName])){
+			return self::$enums[$enumName];
+		}
+		throw new EnumException("$enumName is not registered");
 	}
 }

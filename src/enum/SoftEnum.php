@@ -10,7 +10,7 @@ use pocketmine\Server;
 use function array_unique;
 use function in_array;
 
-class SoftEnum extends CustomEnum{
+final class SoftEnum extends CustomEnum{
 
 	protected Server $server;
 
