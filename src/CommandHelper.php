@@ -9,10 +9,6 @@ use pocketmine\permission\Permission;
 use pocketmine\plugin\PluginBase;
 use pocketmine\scheduler\ClosureTask;
 use ReflectionClass;
-use skymin\CommandHelper\enum\DefaultEnums;
-use skymin\CommandHelper\enum\EnumManager;
-use skymin\CommandHelper\enum\HardcodedEnum;
-use skymin\CommandHelper\enum\SoftEnum;
 use skymin\CommandHelper\parameter\CommandParameters;
 use skymin\event\EventManager;
 
@@ -29,11 +25,6 @@ final class CommandHelper extends PluginBase{
 	 * @phpstan-var array<string, null|string|Permission>
 	 */
 	private array $permissions = [];
-
-	protected function onLoad() : void{
-		EnumManager::register(new HardcodedEnum(DefaultEnums::BOOLEAN, 'true', 'false'));
-		EnumManager::register(new SoftEnum(DefaultEnums::ONLINE_PLAYER));
-	}
 
 	protected function onEnable() : void{
 		EventManager::register(new EventListener($this), $this);

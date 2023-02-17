@@ -52,7 +52,10 @@ final class CommandParameters{
 		return $this->permission;
 	}
 
-	/** @return CommandParameter[] */
+	/**
+	 * @internal
+	 * @return CommandParameter[]
+	 */
 	public function encode() : array{
 		$overload = [];
 		foreach($this->parameters as $parameter){

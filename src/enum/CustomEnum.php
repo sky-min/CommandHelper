@@ -16,12 +16,13 @@ abstract class CustomEnum{
 		string ...$values
 	){
 		$this->values = array_unique($values);
-		EnumManager::register($this);
+		EnumManager::getInstance()->register($this);
 	}
 
 	public final function getName() : string{
 		return $this->name;
 	}
 
+	/** @internal  */
 	abstract public function encode() : CommandEnum;
 }

@@ -6,23 +6,12 @@ namespace skymin\CommandHelper\type;
 
 use pocketmine\network\mcpe\protocol\AvailableCommandsPacket;
 
-enum ParameterTypes{
+enum ParameterTypes: int{
 
-	case BLOCK_POSITION;
-	case FLOAT;
-	case INT;
-	case STRING;
-	case TEXT;
-	case POSITION;
-
-	public static function encode(self $value) : int{
-		return match($value) {
-			self::BLOCK_POSITION => AvailableCommandsPacket::ARG_TYPE_INT_POSITION,
-			self::FLOAT => AvailableCommandsPacket::ARG_TYPE_FLOAT,
-			self::INT => AvailableCommandsPacket::ARG_TYPE_INT,
-			self::STRING => AvailableCommandsPacket::ARG_TYPE_STRING,
-			self::TEXT => AvailableCommandsPacket::ARG_TYPE_RAWTEXT,
-			self::POSITION => AvailableCommandsPacket::ARG_TYPE_POSITION
-		};
-	}
+	case BLOCK_POSITION = AvailableCommandsPacket::ARG_TYPE_INT_POSITION;
+	case FLOAT = AvailableCommandsPacket::ARG_TYPE_FLOAT;
+	case INT = AvailableCommandsPacket::ARG_TYPE_INT;
+	case STRING = AvailableCommandsPacket::ARG_TYPE_STRING;
+	case TEXT = AvailableCommandsPacket::ARG_TYPE_RAWTEXT;
+	case POSITION = AvailableCommandsPacket::ARG_TYPE_POSITION;
 }

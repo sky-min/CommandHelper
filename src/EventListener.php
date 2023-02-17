@@ -19,7 +19,11 @@ use function count;
 
 final class EventListener implements Listener{
 
-	public function __construct(private readonly CommandHelper $helper){ }
+	private EnumManager $manager;
+
+	public function __construct(private readonly CommandHelper $helper){
+		$this->manager = EnumManager::getInstance();
+	}
 
 	#[EventHandler(EventPriority::MONITOR)]
 	public function onSendPacket(DataPacketSendEvent $ev) : void{
@@ -51,15 +55,17 @@ final class EventListener implements Listener{
 		}
 	}
 
+	#[EventHandler(EventPriority::MONITOR)]
 	public function onJoin(PlayerJoinEvent $ev) : void{
 		/** @phpstan-var  SoftEnum $enum */
-		$enum = EnumManager::getEnum(DefaultEnums::ONLINE_PLAYER);
+		$enum = $this->manager->getEnum(DefaultEnums::ONLINE_PLAYER);
 		$enum->addValue($ev->getPlayer()->getName());
 	}
 
+	#[EventHandler(EventPriority::MONITOR)]
 	public function onQuit(PlayerQuitEvent $ev) : void{
 		/** @phpstan-var  SoftEnum $enum */
-		$enum = EnumManager::getEnum(DefaultEnums::ONLINE_PLAYER);
+		$enum = $this->manager->getEnum(DefaultEnums::ONLINE_PLAYER);
 		$enum->removeValue($ev->getPlayer()->getName());
 	}
 }

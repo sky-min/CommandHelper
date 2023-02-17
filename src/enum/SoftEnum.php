@@ -24,8 +24,16 @@ final class SoftEnum extends CustomEnum{
 	}
 
 
-	public function encode() : CommandEnum{
+	/** @internal  */
+	public function generate() : CommandEnum{
 		return new CommandEnum($this->name, $this->values, true);
+	}
+
+	/** @internal  */
+	public function encode() : CommandEnum{
+		/** @var SoftEnum $enum */
+		$enum = EnumManager::getInstance()->getEnum($this->name);
+		return $enum->generate();
 	}
 
 	public function addValue(string ...$values) : void{
