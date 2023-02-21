@@ -9,7 +9,6 @@ use InvalidArgumentException;
 use pocketmine\network\mcpe\protocol\types\command\CommandParameter;
 use pocketmine\permission\Permission;
 use pocketmine\permission\PermissionManager;
-use skymin\CommandHelper\enum\SoftEnum;
 use function count;
 use function explode;
 
@@ -34,7 +33,7 @@ final class CommandParameters{
 			}
 		}
 		foreach($parameters as $parameter){
-			if($parameter instanceof SoftEnum){
+			if($parameter->isSoftEnum()){
 				$this->hasSoftEnum = true;
 			}
 		}
