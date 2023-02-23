@@ -33,3 +33,5 @@ class ExampleCommand extends Command{
     }
 }
 ```
+
+![Example](https://i.ibb.co/nCsr0Rk/example.jpg)
