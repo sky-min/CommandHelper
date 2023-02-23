@@ -16,7 +16,6 @@ abstract class CustomEnum{
 		string ...$values
 	){
 		$this->values = array_unique($values);
-		EnumManager::getInstance()->register($this);
 	}
 
 	public final function getName() : string{

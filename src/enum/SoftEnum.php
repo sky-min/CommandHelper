@@ -23,17 +23,9 @@ final class SoftEnum extends CustomEnum{
 		$this->server->broadcastPackets($this->server->getOnlinePlayers(), [$packet]);
 	}
 
-
-	/** @internal  */
-	public function generate() : CommandEnum{
-		return new CommandEnum($this->name, $this->values, true);
-	}
-
 	/** @internal  */
 	public function encode() : CommandEnum{
-		/** @var SoftEnum $enum */
-		$enum = EnumManager::getInstance()->getEnum($this->name);
-		return $enum->generate();
+		return new CommandEnum($this->name, $this->values, true);
 	}
 
 	public function addValue(string ...$values) : void{

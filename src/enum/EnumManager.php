@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace skymin\CommandHelper\enum;
 
 use pocketmine\utils\SingletonTrait;
+use function trim;
 
 final class EnumManager{
 	use SingletonTrait;
@@ -25,13 +26,12 @@ final class EnumManager{
 		$this->register(new SoftEnum(DefaultEnums::ONLINE_PLAYER->value));
 	}
 
-	/** @internal */
 	public function register(CustomEnum $enum) : void{
 		$enumName = $enum->getName();
+		if(trim($enumName) === ''){
+			throw new EnumException("Enum's name cannot be empty");
+		}
 		if(isset($this->enums[$enumName])){
-			if($this->enums[$enumName]::class === $enum::class){
-				return;
-			}
 			throw new EnumException("$enumName is already registered");
 		}
 		$this->enums[$enum->getName()] = $enum;

@@ -42,14 +42,14 @@ final class EventListener implements Listener{
 		foreach($packet->commandData as $name => $commandData){
 			if(!isset($overloads[$name])) continue;
 			$newOverloads = [];
-			if($overloads[$name] instanceof CommandParameters){
-				$newOverloads[] = $overloads[$name]->encode();
-				continue;
-			}
 			foreach($overloads[$name] as $index => $overload){
 				$permission = $permissions[$name][$index];
 				if($permission !== null && !$player->hasPermission($permission)) continue;
-				$newOverloads[] = $overload;
+				if($overload instanceof CommandParameters){
+					$newOverloads[] = $overload->encode();
+				}else{
+					$newOverloads[] = $overload;
+				}
 			}
 			$commandData->overloads = $newOverloads;
 		}

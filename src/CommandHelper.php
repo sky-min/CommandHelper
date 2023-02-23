@@ -38,9 +38,9 @@ final class CommandHelper extends PluginBase{
 					$parameters = $attribute->newInstance();
 					if($parameters->hasSoftEnum()){
 						$this->overloads[$name][] = $parameters;
-						continue;
+					}else{
+						$this->overloads[$name][] = $parameters->encode();
 					}
-					$this->overloads[$name][] = $parameters->encode();
 					$this->permissions[$name][] = $parameters->getPermission();
 				}
 			}
