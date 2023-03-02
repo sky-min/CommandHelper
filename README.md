@@ -36,4 +36,4 @@ class ExampleCommand extends Command{
 
 ![Example](https://i.ibb.co/nCsr0Rk/example.jpg)
 
-[pooggit](https://poggit.pmmp.io/ci/sky-min/CommandHelper/~)
+[poggit](https://poggit.pmmp.io/ci/sky-min/CommandHelper/~)
