@@ -5,4 +5,5 @@ branches:
 projects:
   CommandHelper:
     path: ""
+    lint: false
 ...
