@@ -4,6 +4,7 @@ version: 1.1.0
 main: skymin\CommandHelper\CommandHelper
 api: 5.0.0
 src-namespace-prefix: skymin\CommandHelper
+
 extensions:
-    Core: ">=8.1"
+    Core: >=8.1
 ...
