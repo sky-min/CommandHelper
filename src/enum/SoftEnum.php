@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace skymin\CommandHelper\enum;
 
+use pocketmine\network\mcpe\NetworkBroadcastUtils;
 use pocketmine\network\mcpe\protocol\types\command\CommandEnum;
 use pocketmine\network\mcpe\protocol\UpdateSoftEnumPacket;
 use pocketmine\Server;
@@ -20,7 +21,7 @@ final class SoftEnum extends CustomEnum{
 	}
 
 	protected final function broadcastPacket(UpdateSoftEnumPacket $packet) : void{
-		$this->server->broadcastPackets($this->server->getOnlinePlayers(), [$packet]);
+		NetworkBroadcastUtils::broadcastPackets($this->server->getOnlinePlayers(), [$packet]);
 	}
 
 	/** @internal  */
